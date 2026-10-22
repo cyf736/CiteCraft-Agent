@@ -24,3 +24,7 @@ backend/config/settings.json
 
 front/node_modules/
 front/dist/
+
+# Active OpenSpec changes stay local; only archive is tracked
+openspec/changes/*
+!openspec/changes/archive/
