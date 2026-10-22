@@ -1,0 +1,28 @@
+{
+  "milvus": {
+    "host": "127.0.0.1",
+    "port": 19530
+  },
+  "profiles": {
+    "orchestrator": {
+      "api_base": "http://127.0.0.1:8001/v1",
+      "model": "orchestrator",
+      "api_key_env": "CITECRAFT_ORCHESTRATOR_API_KEY"
+    },
+    "analysis": {
+      "api_base": "http://127.0.0.1:8001/v1",
+      "model": "analysis",
+      "api_key_env": "CITECRAFT_ANALYSIS_API_KEY"
+    },
+    "direction": {
+      "api_base": "http://127.0.0.1:8001/v1",
+      "model": "direction",
+      "api_key_env": "CITECRAFT_DIRECTION_API_KEY"
+    },
+    "embedding": {
+      "api_base": "http://127.0.0.1:8001/v1",
+      "model": "embedding",
+      "api_key_env": "CITECRAFT_EMBEDDING_API_KEY"
+    }
+  }
+}

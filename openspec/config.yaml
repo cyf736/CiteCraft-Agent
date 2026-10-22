@@ -1,0 +1,36 @@
+schema: spec-driven
+
+# 后续提案、规格、设计和任务都要遵守这些约束。
+context: |
+  规划文件使用中文。规格写可观察行为，不把框架版本写进需求。
+  后端使用 Python 3.12、uv、FastAPI 和 LangGraph。
+  模型调用使用 OpenAI 兼容的对话接口和 embedding 接口。
+  论文切块和向量写入 Milvus。etcd 和 MinIO 是 Milvus 单机部署所需的依赖，只在 Milvus 的 compose 中启动；应用只连接 Milvus，不连接 etcd 或 MinIO。
+  会话、用户发言、最终回答、运行事件，以及检索结果、分析结果、研究方向结果写入 SQLite。进程重启后可以读回。未完成的运行只标记为中断，不从中断点继续执行。
+  远程论文来源是 arXiv。PDF 文本可以提取时保存正文切块，否则保存摘要切块。
+  前端使用 React、TypeScript 和 Vite。
+  测试使用 pytest。
+  代码里不要用 or 给缺失值填默认值。只有这个值确实可能为空时才处理空值，并写明这个分支；不要层层 or 或重复判空来兜底。
+  不要写简单粗暴、没有实际功能作用的检查。
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always state what is out of scope
+#     tasks:
+#       - Break tasks into chunks of max 2 hours
+
+# Per-operation guidance (optional)
+# Add advisory guidance for how apply and archive work should be conducted.
+# This is separate from artifact rules above.
+# Example:
+#   operations:
+#     apply:
+#       guidance:
+#         - Keep test summaries concise
+#     archive:
+#       guidance:
+#         - Summarize the archive outcome before finishing
