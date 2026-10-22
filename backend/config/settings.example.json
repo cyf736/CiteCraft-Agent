@@ -4,20 +4,20 @@
     "port": 19530
   },
   "profiles": {
-    "orchestrator": {
+    "luna_agent": {
       "api_base": "http://127.0.0.1:8001/v1",
-      "model": "orchestrator",
-      "api_key_env": "CITECRAFT_ORCHESTRATOR_API_KEY"
+      "model": "luna",
+      "api_key_env": "CITECRAFT_LUNA_API_KEY"
     },
-    "analysis": {
+    "default_agent": {
       "api_base": "http://127.0.0.1:8001/v1",
-      "model": "analysis",
-      "api_key_env": "CITECRAFT_ANALYSIS_API_KEY"
+      "model": "default",
+      "api_key_env": "CITECRAFT_DEFAULT_API_KEY"
     },
-    "direction": {
+    "solar_agent": {
       "api_base": "http://127.0.0.1:8001/v1",
-      "model": "direction",
-      "api_key_env": "CITECRAFT_DIRECTION_API_KEY"
+      "model": "solar",
+      "api_key_env": "CITECRAFT_SOLAR_API_KEY"
     },
     "embedding": {
       "api_base": "http://127.0.0.1:8001/v1",

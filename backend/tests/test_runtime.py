@@ -19,7 +19,7 @@ README = REPO / "README.md"
 def test_example_config_has_profiles_and_milvus_without_minio_or_secrets() -> None:
     raw = json.loads(EXAMPLE.read_text(encoding="utf-8"))
     text = EXAMPLE.read_text(encoding="utf-8").lower()
-    assert set(raw["profiles"]) == {"orchestrator", "analysis", "direction", "embedding"}
+    assert set(raw["profiles"]) == {"luna_agent", "default_agent", "solar_agent", "embedding"}
     assert raw["milvus"]["host"] == "127.0.0.1"
     assert raw["milvus"]["port"] == 19530
     assert "minio" not in text
@@ -42,9 +42,9 @@ def test_compose_gives_minio_address_only_to_milvus() -> None:
 def test_readme_uses_the_example_config_keys() -> None:
     text = README.read_text(encoding="utf-8")
     for key in (
-        "orchestrator",
-        "analysis",
-        "direction",
+        "luna_agent",
+        "default_agent",
+        "solar_agent",
         "embedding",
         "api_base",
         "model",

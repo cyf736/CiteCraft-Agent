@@ -10,7 +10,7 @@
 系统 SHALL 使用调用方指定的已配置档位发起对话，并把模型返回的文本交给调用方。
 
 #### Scenario: 编排档位返回文本
-- **WHEN** 编排档位已配置，且对话接口返回一段文本
+- **WHEN** `default_agent` 已配置，且对话接口返回一段文本
 - **THEN** 调用方得到这段文本
 
 ### Requirement: 按档位返回向量
@@ -26,3 +26,14 @@
 #### Scenario: 未配置档位导致失败
 - **WHEN** 调用方使用示例配置中不存在的档位
 - **THEN** 调用失败，并说明该档位不存在
+
+#### Scenario: 旧职责档位名失败
+- **WHEN** 调用方使用 `orchestrator`
+- **THEN** 调用失败，并说明该档位不存在，且没有改用 `default_agent`
+
+### Requirement: 强弱档位使用各自的模型
+系统 SHALL 使用 `luna_agent`、`default_agent`、`solar_agent` 各自配置的模型发起对话。
+
+#### Scenario: 弱档和强档使用不同模型
+- **WHEN** `luna_agent` 与 `solar_agent` 配置了不同的模型名，并分别发起对话
+- **THEN** 两次请求中的模型名分别是这两个档位配置的模型

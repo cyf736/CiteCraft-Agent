@@ -10,7 +10,7 @@
 Copy-Item backend\config\settings.example.json backend\config\settings.json
 ```
 
-四个模型配置是 `orchestrator`、`analysis`、`direction`、`embedding`。每个配置有 `api_base`、`model`、`api_key_env`。密钥放在对应的环境变量里。
+四个模型配置是 `luna_agent`、`default_agent`、`solar_agent`、`embedding`。前三个是对话档位，按基础、默认、最高能力区分。`embedding` 只做向量。每个配置有 `api_base`、`model`、`api_key_env`。密钥放在对应的环境变量里。
 
 Milvus 地址由 `milvus.host` 和 `milvus.port` 指定，默认是 `127.0.0.1` 和 `19530`。
 

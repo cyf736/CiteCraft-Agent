@@ -27,14 +27,18 @@ def test_chat_and_embedding_use_the_requested_profile() -> None:
         settings = load_settings(EXAMPLE)
         async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as http:
             client = ModelClient(settings, http)
-            text = await client.chat("orchestrator", [{"role": "user", "content": "问题"}])
+            text = await client.chat("default_agent", [{"role": "user", "content": "问题"}])
+            luna = await client.chat("luna_agent", [{"role": "user", "content": "简单"}])
+            solar = await client.chat("solar_agent", [{"role": "user", "content": "困难"}])
             vector = await client.embed("embedding", "问题")
         assert text == "检索方向"
+        assert luna == "检索方向"
+        assert solar == "检索方向"
         assert vector == [0.25, 4.0]
         bodies = [json.loads(request.content) for request in seen]
-        assert [body["model"] for body in bodies] == ["orchestrator", "embedding"]
+        assert [body["model"] for body in bodies] == ["default", "luna", "solar", "embedding"]
         assert seen[0].url.path.endswith("/chat/completions")
-        assert seen[1].url.path.endswith("/embeddings")
+        assert seen[3].url.path.endswith("/embeddings")
 
     asyncio.run(scenario())
 
@@ -50,8 +54,8 @@ def test_unknown_profile_fails_without_request() -> None:
         settings = load_settings(EXAMPLE)
         async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as http:
             client = ModelClient(settings, http)
-            with pytest.raises(SettingsError, match="missing-profile"):
-                await client.chat("missing-profile", [{"role": "user", "content": "问题"}])
+            with pytest.raises(SettingsError, match="档位不存在：orchestrator"):
+                await client.chat("orchestrator", [{"role": "user", "content": "问题"}])
 
     asyncio.run(scenario())
     assert seen == []

@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 
 
-PROFILE_NAMES = ("orchestrator", "analysis", "direction", "embedding")
+PROFILE_NAMES = ("luna_agent", "default_agent", "solar_agent", "embedding")
 SECRET_FIELDS = {"api_key", "secret", "token", "password"}
 
 
